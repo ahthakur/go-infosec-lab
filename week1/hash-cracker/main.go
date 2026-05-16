@@ -35,9 +35,10 @@ func main() {
 	fileHash := "sample"
 	for scanner.Scan() {
 		word := scanner.Text()
-		if *algo == `md5` {
+		switch *algo {
+		case `md5`:
 			fileHash = fmt.Sprintf("%x", md5.Sum([]byte(word)))
-		} else if *algo == `sha256` {
+		case `sha256`:
 			fileHash = fmt.Sprintf("%x", sha256.Sum256([]byte(word)))
 		}
 		if fileHash == userHash {
